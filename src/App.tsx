@@ -43,7 +43,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="app-container">
       <h1>Weather App</h1>
       <SearchBar onSearch={fetchWeather}/>
       {weatherData && (

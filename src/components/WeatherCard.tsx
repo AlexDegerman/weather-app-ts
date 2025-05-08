@@ -1,3 +1,5 @@
+import '../styles/WeatherCard.css'
+
 interface WeatherCardProps {
   weather: {
     temp_c: number
@@ -23,8 +25,8 @@ interface WeatherCardProps {
 const WeatherCard = ({ weather, forecast}: WeatherCardProps) => {
 
   return (
-    <div>
-      <div>
+    <div className="weather-card">
+      <div className="main-info">
         <h2>{forecast[0].date}</h2>
         <img src={weather.condition.icon} alt={weather.condition.text}/>
         <p>{weather.temp_c}°C</p>
@@ -32,9 +34,9 @@ const WeatherCard = ({ weather, forecast}: WeatherCardProps) => {
         <p>Humidity: {weather.humidity}</p>
         <p>Wind: {weather.wind_kph}</p>
       </div>
-      <div>
+      <div className="forecast">
         {forecast.map((day, index) => (
-          <div key={index}>
+          <div key={index} className="forecast-day">
             <p>{new Date(day.date).toLocaleDateString("en-US", { weekday: "long" })}</p>
             <img src={day.day.condition.icon} alt={day.day.condition.text}/>
             <p>{day.day.avgtemp_c}°C</p>

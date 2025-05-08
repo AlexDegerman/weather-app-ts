@@ -1,4 +1,5 @@
 import { useState } from "react"
+import '../styles/SearchBar.css'
 
 interface SearchBarProps {
   onSearch: (city: string) => void
@@ -14,7 +15,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   }
 
   return (
-    <div>
+    <div className="search-bar">
       <input 
       type="text"
       placeholder="Enter city name"
