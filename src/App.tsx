@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import axios from 'axios'
+import WeatherCard from './components/WeatherCard'
 
 interface WeatherData {
   temp_c: number
@@ -45,7 +46,7 @@ const App = () => {
       <h1>Weather App</h1>
       <p>search bar</p>
       {weatherData && (
-        <p>weather cards</p>
+        <WeatherCard weather={weatherData} forecast={forecast}/>
       )}
     </div>
   )
