@@ -28,6 +28,7 @@ interface ForecastDay {
 const App = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
   const [forecast, setForecast] = useState<ForecastDay[]>([])
+  const [showNotification, setShowNotification] = useState(false)
 
   const fetchWeather = async (city: string) => {
     try {
@@ -39,6 +40,10 @@ const App = () => {
       setForecast(response.data.forecast.forecastday)
     } catch {
       setWeatherData(null)
+      setShowNotification(true)
+      setTimeout(() => {
+        setShowNotification(false)
+      }, 4000)
     }
   }
 
@@ -46,6 +51,12 @@ const App = () => {
     <div className="app-container">
       <h1>Weather App</h1>
       <SearchBar onSearch={fetchWeather}/>
+      {showNotification && (
+        <div className="notification">
+          <p>Could not fetch weather data</p>
+          <p>Please check the city name</p>
+        </div>
+      )}
       {weatherData && (
         <WeatherCard weather={weatherData} forecast={forecast}/>
       )}
