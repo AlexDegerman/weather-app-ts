@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import WeatherCard from './components/WeatherCard'
+import SearchBar from './components/SearchBar'
 
 interface WeatherData {
   temp_c: number
@@ -26,7 +27,7 @@ interface ForecastDay {
 
 const App = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
-  const [forecast, setForecast] = useState<ForecastDay[] | undefined>(undefined)
+  const [forecast, setForecast] = useState<ForecastDay[]>([])
 
   const fetchWeather = async (city: string) => {
     try {
@@ -35,7 +36,7 @@ const App = () => {
 
       const response = await axios.get(url)
       setWeatherData(response.data.current)
-      setForecast(response.data.forecast.forestcastday)
+      setForecast(response.data.forecast.forecastday)
     } catch {
       setWeatherData(null)
     }
@@ -44,7 +45,7 @@ const App = () => {
   return (
     <div>
       <h1>Weather App</h1>
-      <p>search bar</p>
+      <SearchBar onSearch={fetchWeather}/>
       {weatherData && (
         <WeatherCard weather={weatherData} forecast={forecast}/>
       )}
