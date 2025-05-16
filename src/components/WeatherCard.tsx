@@ -1,38 +1,22 @@
 import '../styles/WeatherCard.css'
+import { useAppSelector } from '../store/hooks'
 
-interface WeatherCardProps {
-  weather: {
-    temp_c: number
-    condition: {
-      text: string
-      icon: string
-    }
-    humidity: number
-    wind_kph: number
+const WeatherCard = () => {
+  const { weatherData, forecast } = useAppSelector(state => state.weather)
+
+  if (!weatherData || forecast.length === 0) {
+    return null
   }
-  forecast: {
-    date: string
-    day: {
-      avgtemp_c: number
-      condition: {
-        text: string
-        icon: string
-      }
-    }
-  }[]
-}
-
-const WeatherCard = ({ weather, forecast}: WeatherCardProps) => {
 
   return (
     <div className="weather-card">
       <div className="main-info">
         <h2>{forecast[0].date}</h2>
-        <img src={weather.condition.icon} alt={weather.condition.text}/>
-        <p>{weather.temp_c}°C</p>
-        <p>Condition: {weather.condition.text}</p>
-        <p>Humidity: {weather.humidity}</p>
-        <p>Wind: {weather.wind_kph}</p>
+        <img src={weatherData.condition.icon} alt={weatherData.condition.text}/>
+        <p>{weatherData.temp_c}°C</p>
+        <p>Condition: {weatherData.condition.text}</p>
+        <p>Humidity: {weatherData.humidity}</p>
+        <p>Wind: {weatherData.wind_kph} kph</p>
       </div>
       <div className="forecast">
         {forecast.map((day, index) => (
