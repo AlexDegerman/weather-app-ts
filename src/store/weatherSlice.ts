@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit"
-import type { ForecastDay, WeatherData, WeatherState } from "./types"
+import { createAsyncThunk, createSlice} from "@reduxjs/toolkit"
+import type { WeatherState } from "./types"
 import axios from "axios"
 
 const initialState: WeatherState = {
