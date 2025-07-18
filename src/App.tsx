@@ -1,4 +1,3 @@
-import './App.css'
 import { useEffect } from "react"
 import SearchBar from "./components/SearchBar"
 import WeatherCard from "./components/WeatherCard"
@@ -20,17 +19,17 @@ const App = () => {
   }, [showNotification, dispatch])
 
   return (
-    <div className="app-container">
-      <h1>Weather App</h1>
-      <SearchBar />
+    <div className="text-center font-sans p-5 bg-sky-300 min-h-screen">
+      <h1 className="text-blue-800 text-3xl font-normal mb-5">Weather App</h1>
+      <SearchBar/>
       {showNotification && (
-        <div className="notification">
+        <div className="bg-white rounded p-4 mt-2.5">
           <p>Could not fetch weather data</p>
           <p>Please check the city name</p>
         </div>
       )}
       {weatherData && (
-        <WeatherCard />
+        <WeatherCard/>
       )}
     </div>
   )
