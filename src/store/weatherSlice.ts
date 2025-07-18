@@ -21,7 +21,7 @@ export const fetchWeatherData = createAsyncThunk(
         weatherData: response.data.current,
         forecast: response.data.forecast.forecastday
       }
-    } catch (error: any) {
+    } catch {
       return rejectWithValue('Could not fetch weather data')
     }
   }
